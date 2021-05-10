@@ -10,39 +10,36 @@ export const getFilms = (req, res) => {
 export const createFilm = (req, res) => {
     const film = req.body;
   
-    films.push({ ...film, id: id()})
+    films.push({ ...film, filmId: id()})
   
     res.send(`O filme ${film.name} foi adicionado!`)
 }
 
 export const getFilm = (req, res) => {
-    const { id } = req.params
-  
-    const filmFind = films.find((film) => film.id === id)
-  
-    res.send(filmFind)
+  const { id } = req.params
+
+  const filmFind = films.find((film) => film.filmId === id)
+
+  res.send(filmFind)
 }
 
 export const deleteFilm = (req, res) => {
-  films = films.filter((film) => film.id !== req.params.id);
+  films = films.filter((film) => film.filmId !== req.params.id);
   
   res.send(`O filme com id ${req.params.id} foi deletado`);
 }
 
 export const updateFilm = (req, res) => {
-    const { id } = req.params
-    const { name, adress, cep, email } = req.body
+    const { name, quant, description } = req.body
   
-    const film = films.find((film) => film.id === id)
+    const film = films.find((film) => film.filmId === req.params.id)
   
     if (name)
       film.name = name
-    if (adress)
-      film.adress = adress
-    if (cep)
-      film.cep = cep
-    if (email)
-      film.email = email
+    if (quant)
+      film.quant = quant
+    if (description)
+      film.description = description
   
-    res.send(`Filme com id ${id} foi atualizado`)
+    res.send(`Filme com id ${req.params.id} foi atualizado`)
 }
