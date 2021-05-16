@@ -1,10 +1,7 @@
-import { v4 as id } from 'uuid'
-
-
-var users = [];
+import { User } from '../models/userModel.js'
 
 export const getUsers = (req, res) => {
-    res.send(users)
+    
 }
 
 export const createUser = (req, res) => {
@@ -26,7 +23,7 @@ export const getUser = (req, res) => {
 export const deleteUser = (req, res) => {
   users = users.filter((user) => user.userId !== req.params.id);
   
-  res.send(`Usuario com id ${req.params.id} foi deletado`);
+  res.send(`Usuario deletado`);
 }
 
 export const updateUser = (req, res) => {
@@ -43,5 +40,5 @@ export const updateUser = (req, res) => {
     if (email)
       user.email = email
   
-    res.send(`User com id ${req.params.id} foi atualizado`)
+    res.send(`User atualizado`)
 }

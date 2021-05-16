@@ -1,6 +1,5 @@
-import { v4 as id } from 'uuid'
+import { Rent } from "../models/rentModel.js";
 
-var rents = [];
 
 export const getRents = (req, res) => {
     res.send(rents)
@@ -26,7 +25,7 @@ export const getRent = (req,res) => {
 export const deleteRent = (req, res) => {
     rents = rents.filter((rent) => rent.rentId !== req.params.id);
   
-    res.send(`A rent com id ${req.params.id} foi deletado`);
+    res.send(`Rent deletada`);
 }
 
 export const updateRent = (req, res) => {
@@ -39,6 +38,6 @@ export const updateRent = (req, res) => {
     if (date)
       rent.date = date
   
-    res.send(`Rent com id ${req.params.id} foi atualizado`)
+    res.send(`Rent  atualizada`)
 }
 

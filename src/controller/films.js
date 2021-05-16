@@ -1,7 +1,5 @@
-import { v4 as id } from 'uuid'
+import { Film } from '../models/filmModel.js';
 
-
-var films = [];
 
 export const getFilms = (req, res) => {
     res.send(films)
@@ -26,20 +24,20 @@ export const getFilm = (req, res) => {
 export const deleteFilm = (req, res) => {
   films = films.filter((film) => film.filmId !== req.params.id);
   
-  res.send(`O filme com id ${req.params.id} foi deletado`);
+  res.send(`Filme deletado`);
 }
 
 export const updateFilm = (req, res) => {
-    const { name, quant, description } = req.body
-  
-    const film = films.find((film) => film.filmId === req.params.id)
-  
-    if (name)
-      film.name = name
-    if (quant)
-      film.quant = quant
-    if (description)
-      film.description = description
-  
-    res.send(`Filme com id ${req.params.id} foi atualizado`)
+  const { name, quant, description } = req.body
+
+  const film = films.find((film) => film.filmId === req.params.id);
+
+  if (name)
+    film.name = name
+  if (quant)
+    film.quant = quant
+  if (description)
+    film.description = description
+
+  res.send(`Film atualizado`)
 }
