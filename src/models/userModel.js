@@ -2,8 +2,8 @@ import { mongoose } from "../database/index.js"
 
 const UserSchema = new mongoose.Schema({
     name: String,
-    cep: String,
     adress: String,
+    cep: String,
     email: String
 },
     { timestamps: true }
