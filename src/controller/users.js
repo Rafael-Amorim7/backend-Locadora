@@ -28,7 +28,7 @@ export const deleteUser = async (req, res) => {
 
   await User.findByIdAndDelete(id, (err, User) => {
     if (err) return res.send(err);
-    if (User) return res.send(`Usuario ${User.name} deletado`);
+    if (User) return res.send(`O usuario ${User.name} foi deletado`);
   })
 }
 
@@ -42,3 +42,4 @@ export const updateUser = async (req, res) => {
     }
   );
 }
+

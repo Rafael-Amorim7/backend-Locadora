@@ -1,43 +1,49 @@
 import { Rent } from "../models/rentModel.js";
 
 
-export const getRents = (req, res) => {
-    res.send(rents)
+export const getRents = async (req, res) => {
+    const rentsAll = await Rent.find({}).exec();
+    return res.send(rentsAll)
 }
 
-export const createRent = (req, res) => {
+export const createRent = async(req, res) => {
     const rent = req.body;
 
     rent.userId = req.params.userId;
     rent.filmId = req.params.filmId;
-
-    rents.push({...rent, rentId: id()})
-
-    res.send(`O filme ${rent.filmId} foi alugado pelo(a) ${rent.userId}`)
+  
+    await Rent.create(rent, (err, Rent) => {
+      if (err) return res.send(err);
+      if (Rent) return res.send(`A rent foi adicionado!`)
+    })
 }
 
-export const getRent = (req,res) => {
-    const rentFind = rents.find((rent) => rent.rentId === req.params.id)
+export const getRent = async (req, res) => {
+    const { id } = req.params
   
-    res.send(rentFind)
+    await Rent.findById(id, (err, Rent) => {
+      if (err) return res.send(err);
+      return res.send(Rent);
+    });
 }
 
-export const deleteRent = (req, res) => {
-    rents = rents.filter((rent) => rent.rentId !== req.params.id);
+export const deleteRent = async (req, res) => {
+    const { id } = req.params
   
-    res.send(`Rent deletada`);
-}
+    await Rent.findByIdAndDelete(id, (err, Rent) => {
+      if (err) return res.send(err);
+      if (Rent) return res.send(`A rent foi deletada`);
+    })
+  }
 
-export const updateRent = (req, res) => {
-    const { price, date } = req.body
+export const updateRent = async (req, res) => {
+    const { price, dateLimit } = req.body
+    const { id } = req.params
   
-    const rent = rents.find((rent) => rent.rentId === req.params.id)
-  
-    if (price)
-      rent.price = price
-    if (date)
-      rent.date = date
-  
-    res.send(`Rent  atualizada`)
+    await Rent.findByIdAndUpdate(id, { price, dateLimit }, (err, Rent) => {
+      if (err) return res.send(err);
+      else return res.send(`A rent foi atualisada`);
+    }
+  );
 }
 

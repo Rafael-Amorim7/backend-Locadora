@@ -29,7 +29,7 @@ export const deleteFilm = async (req, res) => {
 
   await Film.findByIdAndDelete(id, (err, Film) => {
     if (err) return res.send(err);
-    if (Film) return res.send(`O filme ${Film.name} deletado`);
+    if (Film) return res.send(`O filme ${Film.name} foi deletado`);
   })
 }
 
@@ -43,3 +43,4 @@ export const updateFilm = async (req, res) => {
   }
 );
 }
+
