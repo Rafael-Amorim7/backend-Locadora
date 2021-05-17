@@ -12,7 +12,6 @@ export const createUser = async(req, res) => {
       if (err) return res.send(err);
       if (User) return res.send(`O usuario ${User.name} foi adicionado!`)
     })
-  
 }
 
 export const getUser = async (req, res) => {
