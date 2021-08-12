@@ -47,8 +47,8 @@ You can register, select all or specific one, update and delete.
 <h2> 💻 How to run application </h2> 
 
 <ol>
-  <li> Run shell: npm start </li>
-  <li> Run shell: sudo mongod --port (port) </li>
+  <li> Run in bash: npm start </li>
+  <li> Run in bash: sudo mongod --port (port) </li>
   <li> Open a platform like Insomnia or Postman </li>
   <li> Take the path (url)/users or (url)/films or (url)/rents in order to use the appllication </li>
 </ol>
